@@ -78,11 +78,11 @@ def system_prompt():
     )
 
 
-#def get_key():
-#    return st.session_state.get("api_key") or os.getenv("ANTHROPIC_API_KEY")
+def get_key():
+    return st.session_state.get("api_key") or os.getenv("ANTHROPIC_API_KEY")
 
 
-#def run_agent(texto):
+def run_agent(texto):
     client = anthropic.Anthropic(api_key=get_key())
     msgs = st.session_state.api_msgs
     msgs.append({"role": "user", "content": texto})
@@ -123,7 +123,7 @@ with st.sidebar:
     st.slider("K⁺ extracelular (mM)", *LIM["k"][:2], step=LIM["k"][2], key="k")
     st.slider("Ca²⁺ extracelular (mM)", *LIM["ca"][:2], step=LIM["ca"][2], key="ca")
     st.slider("Corrente injetada (µA/cm²)", *LIM["iext"][:2], step=LIM["iext"][2], key="iext")
-    st.text_input("Chave da API Anthropic", type="password", key="api_key", help="Ou defina ANTHROPIC_API_KEY")
+    #st.text_input("Chave da API Anthropic", type="password", key="api_key", help="Ou defina ANTHROPIC_API_KEY")
 
 # ---------------- animação (HH rodando no navegador) ----------------
 HTML = """
@@ -245,14 +245,14 @@ with col_anim:
     components.html(HTML.replace("__PARAMS__", json.dumps(params)), height=660)
     st.caption("Ao mudar um sinal (slider ou agente) a animação reinicia com os novos parâmetros.")
 
-with col_chat:
-    st.subheader("Agente")
-    box = st.container(height=560)
-    with box:
-        if not st.session_state.chat:
-            st.info("Peça, por exemplo: “simule hipercalemia”, “reduza o cálcio para 0,5 mM” ou “volte ao normal”.")
-        for msg in st.session_state.chat:
-            with st.chat_message(msg["role"]):
-                st.write(msg["content"])
-                if msg.get("tools"):
-                    st.caption("⚙️ " + " · ".join(msg["tools"]))
+#with col_chat:
+#    st.subheader("Agente")
+#    box = st.container(height=560)
+#    with box:
+#        if not st.session_state.chat:
+#            st.info("Peça, por exemplo: “simule hipercalemia”, “reduza o cálcio para 0,5 mM” ou “volte ao normal”.")
+#        for msg in st.session_state.chat:
+#            with st.chat_message(msg["role"]):
+#                st.write(msg["content"])
+#                if msg.get("tools"):
+#                    st.caption("⚙️ " + " · ".join(msg["tools"]))
