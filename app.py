@@ -82,7 +82,7 @@ def system_prompt():
 #    return st.session_state.get("api_key") or os.getenv("ANTHROPIC_API_KEY")
 
 
-def run_agent(texto):
+#def run_agent(texto):
     client = anthropic.Anthropic(api_key=get_key())
     msgs = st.session_state.api_msgs
     msgs.append({"role": "user", "content": texto})
