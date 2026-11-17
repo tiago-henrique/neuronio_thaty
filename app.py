@@ -78,8 +78,8 @@ def system_prompt():
     )
 
 
-def get_key():
-    return st.session_state.get("api_key") or os.getenv("ANTHROPIC_API_KEY")
+#def get_key():
+#    return st.session_state.get("api_key") or os.getenv("ANTHROPIC_API_KEY")
 
 
 def run_agent(texto):
